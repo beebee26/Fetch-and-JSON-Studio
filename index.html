@@ -23,15 +23,11 @@
           responseJSONArray.sort((a, b) => (a.hoursInSpace > b.hoursInSpace) ? 1 : -1)
           for (astronaut of responseJSONArray){
             const txt = astronaut.active
-            console.log(document.getElementById("redTrue").innerHTML)
             const newCard = buildAstronautCard(astronaut)
-            //console.log(newCard)
-            
             webPage += newCard
           }
           //console.log('webpage', webPage)
           div.innerHTML = webPage
-          //if document.getElementById("redTrue").style.color = "red";
       })
       )
     })
