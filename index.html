@@ -5,6 +5,37 @@
     <meta name="viewport" content="width=device-width">
     <title>Astronauts</title>
     <link href="style.css" rel="stylesheet" type="text/css" />
+    <script>
+    
+
+
+    
+    window.addEventListener("load", () => {
+      const json = fetch("https://handlers.education.launchcode.org/static/astronauts.json").then((response) => response.json().then((responseJSONArray) => {
+          //console.log(responseJSONArray)
+          
+          const div = document.getElementById("container")
+          
+          let webPage = '';
+          const buildAstronautCard = (astronaut) => {
+            return `<div class="astronaut"><div class="bio"><h3>${astronaut.firstName} ${astronaut.lastName}</h3><ul><li>Hours in space: ${astronaut.hoursInSpace}</li><li id="redTrue">Active: ${astronaut.active}</li><li>Skills: ${astronaut.skills}</li></ul></div><img class="avatar" src=${astronaut.picture}></div>`;
+          }
+          responseJSONArray.sort((a, b) => (a.hoursInSpace > b.hoursInSpace) ? 1 : -1)
+          for (astronaut of responseJSONArray){
+            const txt = astronaut.active
+            console.log(document.getElementById("redTrue").innerHTML)
+            const newCard = buildAstronautCard(astronaut)
+            //console.log(newCard)
+            
+            webPage += newCard
+          }
+          //console.log('webpage', webPage)
+          div.innerHTML = webPage
+          //if document.getElementById("redTrue").style.color = "red";
+      })
+      )
+    })
+    </script>
   </head>
   <body>
     <script src="script.js"></script>
